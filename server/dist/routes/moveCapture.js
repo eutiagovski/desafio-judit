@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const log_1 = require("../models/log");
-const capture2_1 = require("../models/capture2");
+const capture_1 = require("../models/capture");
 // 2.
 // Implemente uma rota para mudar o processo de - lista, listas existentes: backlog, discover, lead, deal, archived.
 // Cada movimentação de lista deve ser logada com id da lista e data de inclusão na lista.
@@ -29,7 +29,7 @@ module.exports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             });
         }
         // find process in database by id
-        let process = yield capture2_1.Capture.find({ lawsuit_cnj: lawsuit_cnj });
+        let process = yield capture_1.Capture.find({ lawsuit_cnj: lawsuit_cnj });
         if (!process) {
             return res
                 .status(400)

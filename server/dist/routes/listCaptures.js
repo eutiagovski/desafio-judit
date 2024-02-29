@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const capture2_1 = require("../models/capture2");
+const capture_1 = require("../models/capture");
 // 3.
 // Implemente uma rota que liste todos os processos capturados, informando em que lista ele está.
 // 4.
@@ -19,9 +19,9 @@ module.exports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const list = req.query.list;
         let captureItems = [];
         if (list)
-            captureItems = yield capture2_1.Capture.find({ list: list });
+            captureItems = yield capture_1.Capture.find({ list: list });
         else
-            captureItems = yield capture2_1.Capture.find({});
+            captureItems = yield capture_1.Capture.find({});
         return res.status(200).send(captureItems);
     }
     catch (err) {

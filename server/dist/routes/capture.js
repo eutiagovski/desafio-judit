@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
-const capture2_1 = require("../models/capture2");
+const capture_1 = require("../models/capture");
 // set axios global api key header
 axios_1.default.defaults.headers.common["api-key"] = process.env.JUDIT_API_KEY;
 // 1.
@@ -40,13 +40,13 @@ module.exports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             });
         }
         // check if we already have this process in the database
-        let existentProcess = yield capture2_1.Capture.find({ lawsuit_cnj: lawsuit_cnj });
+        let existentProcess = yield capture_1.Capture.find({ lawsuit_cnj: lawsuit_cnj });
         if (existentProcess.length > 0) {
             return res
                 .status(200)
                 .send({ message: "This cnj already exists in our database. You can use the list method to check the process response." });
         }
-        const newCapture = new capture2_1.Capture({
+        const newCapture = new capture_1.Capture({
             lawsuit_cnj: lawsuit_cnj,
             request_id: juditResponse.data.request_id,
             list: "backlog",

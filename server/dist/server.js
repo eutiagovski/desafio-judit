@@ -15,7 +15,7 @@ app.post('/capture', require('./routes/capture'));
 app.post('/capture/move', require('./routes/moveCapture'));
 app.get('/capture/list', require('./routes/listCaptures'));
 // connect to database
-mongoose_1.default.connect(`mongodb+srv://judit-db-user:Eu0NDDxrTE4wRbrP@judit-challange.kt0ngvs.mongodb.net/?retryWrites=true&w=majority&appName=judit-challange`)
+mongoose_1.default.connect(`mongodb+srv://judit-db-user:${process.env.DB_PASSWORD}@judit-challange.kt0ngvs.mongodb.net/?retryWrites=true&w=majority&appName=judit-challange`)
     .then(() => {
     console.log('Connected to database');
 });

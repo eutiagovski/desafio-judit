@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Capture } from "../models/capture2";
+import { Capture } from "../models/capture";
 
 // 3.
 // Implemente uma rota que liste todos os processos capturados, informando em que lista ele está.

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Log } from "../models/log";
-import { Capture } from "../models/capture2";
+import { Capture } from "../models/capture";
 
 // 2.
 // Implemente uma rota para mudar o processo de - lista, listas existentes: backlog, discover, lead, deal, archived.
