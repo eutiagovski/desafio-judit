@@ -7,16 +7,18 @@ import { Capture } from "../models/capture";
 // Cada movimentação de lista deve ser logada com id da lista e data de inclusão na lista.
 module.exports = async (req: Request, res: Response) => {
   try {
-    const { lawsuit_cnj, newList } = req.body;
+    const { lawsuit_cnj, new_list } = req.body;
 
-    if (!lawsuit_cnj || !newList) {
+    // check if we have necessary params in body
+    if (!lawsuit_cnj || !new_list) {
       return res
         .status(400)
-        .send({ message: "lawsuit_cnj and newList is mandatory" });
+        .send({ message: "lawsuit_cnj and new_list is mandatory" });
     }
 
+    // check if the params is acording to db model
     const allowedLists = ["backlog", "discover", "lead", "deal", "archived"];
-    if (!allowedLists.includes(newList)) {
+    if (!allowedLists.includes(new_list)) {
       return res.status(400).send({
         message:
           "Invalid list. New list must be: backlog, discover, lead, deal or arhived",
@@ -32,12 +34,12 @@ module.exports = async (req: Request, res: Response) => {
     }
 
     // update process list
-    process[0].list = newList;
+    process[0].list = new_list;
     await process[0].save();
 
     // log this change
     const newLog = new Log({
-      list_id: newList,
+      list_id: new_list,
       lawsuit_cnj: process[0].lawsuit_cnj,
       list_addition_date: new Date().toLocaleDateString(),
     });

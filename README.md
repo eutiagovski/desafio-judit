@@ -47,7 +47,7 @@ Rotas da API
         Move um processo de uma lista para outra.
         Parâmetros:
             lawsuit_cnj: Numero do processo a ser movido.
-            newList: Nova lista para onde o processo será movido (backlog, discover, lead, deal, archived).
+            new_list: Nova lista para onde o processo será movido (backlog, discover, lead, deal, archived).
 
 -- Listagem de Processos
 

@@ -11,15 +11,15 @@ axios.defaults.headers.common["api-key"] = process.env.JUDIT_API_KEY;
 // Todo novo processo capturado entram na primeira de 5 listas existentes, chamada backlog.
 module.exports = async (req: Request, res: Response) => {
   try {
+    // check if we have a lawsuit_cnj 
     const { lawsuit_cnj } = req.body;
-
     if (!lawsuit_cnj) {
       return res.status(400).send({
         message: "Please, you need to provide a lawsuit cnj for search",
       });
     }
 
-    // check judit database
+    // check info in judit database
     const juditResponse = await axios.post(
       "https://requests.prod.judit.io/requests",
       {
@@ -43,6 +43,8 @@ module.exports = async (req: Request, res: Response) => {
         .status(200)
         .send({ message: "This cnj already exists in our database. You can use the list method to check the process response." });
     }
+    
+    // if not, create a new
     const newCapture = new Capture({
       lawsuit_cnj: lawsuit_cnj,
       request_id: juditResponse.data.request_id,

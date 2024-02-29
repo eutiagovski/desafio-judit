@@ -10,6 +10,7 @@ const app = express();
 
 app.use(json());
 
+// routes
 app.post('/capture', require('./routes/capture'))
 app.post('/capture/move', require('./routes/moveCapture'))
 app.get('/capture/list', require('./routes/listCaptures'))
