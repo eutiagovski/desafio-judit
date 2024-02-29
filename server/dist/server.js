@@ -11,6 +11,7 @@ dotenv_1.default.config(); // Load environment variables from .env file
 // initialize app
 const app = (0, express_1.default)();
 app.use((0, body_parser_1.json)());
+// routes
 app.post('/capture', require('./routes/capture'));
 app.post('/capture/move', require('./routes/moveCapture'));
 app.get('/capture/list', require('./routes/listCaptures'));

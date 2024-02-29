@@ -54,7 +54,7 @@ Rotas da API
     GET /capture/list
         Lista todos os processos capturados, informando em qual lista eles estão.
 
-    GET /capture/lista?lista=backlog
+    GET /capture/list?filter=backlog
         Pode-se usar uma query para filtrar a lista que deseja observar
 
 Estrutura do Banco de Dados

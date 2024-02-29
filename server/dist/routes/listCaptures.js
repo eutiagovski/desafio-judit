@@ -16,10 +16,13 @@ const capture_1 = require("../models/capture");
 // Implemente uma rota para listar os processos presentes em uma lista, passando como parâmetro o id da lista.
 module.exports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const list = req.query.list;
+        // check if filter is present in query
+        const filter = req.query.filter;
         let captureItems = [];
-        if (list)
-            captureItems = yield capture_1.Capture.find({ list: list });
+        // if filter is present, get only the items filtered by params in query
+        if (filter)
+            captureItems = yield capture_1.Capture.find({ list: filter });
+        // else get all items
         else
             captureItems = yield capture_1.Capture.find({});
         return res.status(200).send(captureItems);

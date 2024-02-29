@@ -8,12 +8,12 @@ import { Capture } from "../models/capture";
 module.exports = async (req: Request, res: Response) => {
   try {
     // check if filter is present in query
-    const list = req.query.list as string;
+    const filter = req.query.filter as string;
 
     let captureItems = [];
 
     // if filter is present, get only the items filtered by params in query
-    if (list) captureItems = await Capture.find({ list: list });
+    if (filter) captureItems = await Capture.find({ list: filter });
 
     // else get all items
     else captureItems = await Capture.find({});
