@@ -11,7 +11,7 @@ axios.defaults.headers.common["api-key"] = process.env.JUDIT_API_KEY;
 // Todo novo processo capturado entram na primeira de 5 listas existentes, chamada backlog.
 module.exports = async (req: Request, res: Response) => {
   try {
-    // check if we have a lawsuit_cnj 
+    // check if we have a lawsuit_cnj
     const { lawsuit_cnj } = req.body;
     if (!lawsuit_cnj) {
       return res.status(400).send({
@@ -28,9 +28,9 @@ module.exports = async (req: Request, res: Response) => {
           search_key: lawsuit_cnj,
         },
       }
-    );
+    ).catch(e => console.log(e));
 
-    if (!juditResponse.data.request_id) {
+    if (!juditResponse?.data.request_id) {
       return res.status(400).send({
         message: "Process not found in Judit API",
       });
@@ -41,10 +41,13 @@ module.exports = async (req: Request, res: Response) => {
     if (existentProcess.length > 0) {
       return res
         .status(200)
-        .send({ message: "This cnj already exists in our database. You can use the list method to check the process response." });
+        .send({
+          message:
+            "This cnj already exists in our database. You can use the list method to check the process response.",
+        });
     }
-    
-    // if not, create a new
+
+    // if not, create a new in backlog list
     const newCapture = new Capture({
       lawsuit_cnj: lawsuit_cnj,
       request_id: juditResponse.data.request_id,
@@ -66,8 +69,13 @@ module.exports = async (req: Request, res: Response) => {
     }, 20000);
     return res
       .status(200)
-      .send({ message: "Process successfully captured! Wait about 20 seconds and use the list method to check the process response." });
+      .send({
+        message:
+          "Process successfully captured! Wait about 20 seconds and use the list method to check the process response.",
+        data: juditResponse.data,
+      });
   } catch (err) {
+    console.log(err)
     return res
       .status(500)
       .send({ message: "Internal server error. Try again later." });

@@ -59,6 +59,10 @@ Rotas da API
     GET /capture/list?filter=backlog
         Pode-se usar uma query para filtrar a lista que deseja observar
 
+-- Histórico de mudanças (logs)
+    GET /logs
+        Lista os logs armazenados no banco
+
 Estrutura do Banco de Dados
 
 O banco de dados MongoDB é utilizado para armazenar os processos capturados. Os processos são organizados em diferentes listas:
