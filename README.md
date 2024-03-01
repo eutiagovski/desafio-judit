@@ -28,13 +28,12 @@ Caso prefira, poderá utilizar o modo container dessa aplicação.
 
 Para executar o projeto, utilize o comando:
 
--     cd server 
--     npm start
+-     cd server && npm start
 
 
 O servidor estará disponível em http://localhost:4000.
 
-Rotas da API
+### Rotas da API
 
 -- Captura de Processos via CNJ
 
@@ -60,12 +59,14 @@ Rotas da API
         Pode-se usar uma query para filtrar a lista que deseja observar
 
 -- Histórico de mudanças (logs)
+
     GET /logs
         Lista os logs armazenados no banco
 
-Estrutura do Banco de Dados
 
-O banco de dados MongoDB é utilizado para armazenar os processos capturados. Os processos são organizados em diferentes listas:
+#### Estrutura do Banco de Dados
+
+Listas disponíveis:
 
     Backlog
     Discover
