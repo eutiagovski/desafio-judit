@@ -28,7 +28,9 @@ Caso prefira, poderá utilizar o modo container dessa aplicação.
 
 Para executar o projeto, utilize o comando:
 
-npm start
+-     cd server 
+-     npm start
+
 
 O servidor estará disponível em http://localhost:4000.
 

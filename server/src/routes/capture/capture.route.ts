@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import axios from "axios";
 
-import { Capture } from "../models/capture";
+import { Capture } from "../../models/capture";
 
 // set axios global api key header
 axios.defaults.headers.common["api-key"] = process.env.JUDIT_API_KEY;

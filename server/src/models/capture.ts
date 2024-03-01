@@ -1,6 +1,24 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-const captureSchema = new Schema(
+interface ICapture {
+  list: string;
+  request_id: string;
+  lawsuit_cnj: string;
+  process_data: string;
+}
+
+interface CaptureDoc extends mongoose.Document {
+  request_id: string;
+  process_data: string;
+  lawsuit_cnj: string;
+  list: string;
+}
+
+interface CaptrureModelInterface extends mongoose.Model<CaptureDoc>{
+  build(atr:ICapture): CaptureDoc;
+}
+
+const captureSchema = new mongoose.Schema(
   {
     list: {
       type: String,
@@ -14,6 +32,9 @@ const captureSchema = new Schema(
   { timestamps: true }
 );
 
-const Capture = model("Capture", captureSchema);
+captureSchema.statics.build = (attr: ICapture) => {
+  return new Capture(attr);
+}
+const Capture = mongoose.model<CaptureDoc, CaptrureModelInterface>("Capture", captureSchema);
 
 export {Capture}
